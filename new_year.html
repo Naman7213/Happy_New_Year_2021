@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="new_year.css">
+</head>
+<body>
+	<table class="container" cellpadding="20px">
+		<tr class="info">
+			<td id="days"></td>
+			<td id="hrs"></td>
+			<td id="min"></td>
+			<td id="sec"></td>
+		</tr>
+		<tr>
+			<td>Days</td>
+			<td>Hours</td>
+			<td>Minutes</td>
+			<td>Seconds</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		var newYear= new Date("January 1,2021 00:00:00").getTime();
+		var countDown= setInterval(()=>{
+			var now= new Date().getTime();
+
+			var timeleft= newYear - now;
+			var days= Math.floor(timeleft/(1000*60*60*24));
+			var hours= Math.floor((timeleft%(1000*60*60*24))/(1000*60*60));
+			var Minutes= Math.floor((timeleft%(1000*60*60))/(1000*60));
+			var Seconds= Math.floor((timeleft%(1000*60))/1000);
+
+			document.getElementById("days").innerHTML= days;
+			document.getElementById("hrs").innerHTML= hours;
+			document.getElementById("min").innerHTML= Minutes;
+			document.getElementById("sec").innerHTML= Seconds;
+
+			if (timeleft<0){
+				clearInterval(countDown);
+				document.body.style.backgroundImage= "url(ha.jpg)";
+				document.querySelector(".container").hidden= true;
+			}
+
+		}, 1000)
+	</script>
+</body>
+</html>
